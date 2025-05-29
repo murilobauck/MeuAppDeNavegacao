@@ -5,8 +5,8 @@ const windowWidth = Dimensions.get('window').width;
 
 const usuarios = [
     {
-        'nome': 'adm@123',
-        'senha': '12345'
+        'nome': 'admin',
+        'senha': 'password'
     }
 ]
 
