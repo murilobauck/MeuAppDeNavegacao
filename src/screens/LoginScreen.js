@@ -14,12 +14,20 @@ export default function TelaLogin({ navigation }) {
     const [nomeUsuario, setNomeUsuario] = useState("");
     const [senha, setSenha] = useState("");
 
-    function verificarLogin() {
+    async function verificarLogin() {
         for (let i = 0; i < usuarios.length; i++) {
             if (usuarios[i].nome === nomeUsuario && usuarios[i].senha === senha) {
-                return true;
+                try {
+                    await AsyncStorage.setItem('userToken', 'authenticated');
+                    await AsyncStorage.setItem('username', nomeUsuario);
+                    navigation.navigate('Home');
+                    return true;
+                } catch (e) {
+                    console.error('Erro ao salvar o token:', e);
+                }
             }
         }
+        Alert.alert('Erro', 'Usuário ou senha incorretos');
         return false;
     }
     
