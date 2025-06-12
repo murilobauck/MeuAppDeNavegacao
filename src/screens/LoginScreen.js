@@ -1,17 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity } from 'react-native';
+import { loginVerification, saveLogin } from '../LoginVerify';
 
 const windowWidth = Dimensions.get('window').width;
 
 export default function TelaLogin({ navigation }) {
-    const [nomeUsuario, setNomeUsuario] = useState("");
+    const [login, setlogin] = useState("");
     const [senha, setSenha] = useState("");
 
     useEffect(() => {
       verificarLogin(navigation);
     }, []);
 
-    function verificarLogin() {
+    const verificarLogin = () => {
       if (login === "admin" && senha === "123") {
       saveLogin(login, senha);
       navigation.navigate('Home');
@@ -29,8 +30,8 @@ export default function TelaLogin({ navigation }) {
                     style={estilos.input}
                     placeholder="Nome de usuário"
                     placeholderTextColor="#999"
-                    value={nomeUsuario}
-                    onChangeText={setNomeUsuario}
+                    value={login}
+                    onChangeText={setlogin}
                 />
                 
                 <TextInput
@@ -42,7 +43,7 @@ export default function TelaLogin({ navigation }) {
                     onChangeText={setSenha}
                 />
                 
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={estilos.botao}
                     onPress={() => verificarLogin() && navigation.navigate('Home')}
                 >
