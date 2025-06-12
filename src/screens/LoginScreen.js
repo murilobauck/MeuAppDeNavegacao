@@ -3,24 +3,21 @@ import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity } from 
 
 const windowWidth = Dimensions.get('window').width;
 
-const usuarios = [
-    {
-        'nome': 'admin',
-        'senha': 'password'
-    }
-]
-
 export default function TelaLogin({ navigation }) {
     const [nomeUsuario, setNomeUsuario] = useState("");
     const [senha, setSenha] = useState("");
 
+    useEffect(() => {
+      verificarLogin(navigation);
+    }, []);
+
     function verificarLogin() {
-        for (let i = 0; i < usuarios.length; i++) {
-            if (usuarios[i].nome === nomeUsuario && usuarios[i].senha === senha) {
-                return true;
-            }
-        }
-        return false;
+      if (login === "admin" && senha === "123") {
+      saveLogin(login, senha);
+      navigation.navigate('Home');
+      } else {
+        alert("Usuário ou senha incorretos");
+      }
     }
     
     return (
