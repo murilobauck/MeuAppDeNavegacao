@@ -21,7 +21,7 @@ export default function TelaLogin({ navigation }) {
       }
 
       const isValidCredential = validateCredentials.some(
-        (usuario) => usuario.usuario === usuario && usuario.senha === senha
+        (credencial) => credencial.usuario === usuario && credencial.senha === senha
       );
 
       if (isValidCredential) {
@@ -36,7 +36,6 @@ export default function TelaLogin({ navigation }) {
         Alert.alert('Erro de Login', 'Usuário ou senha inválidos.');
         }
     }
-}
 
     return (
         <View style={estilos.container}>
@@ -69,7 +68,7 @@ export default function TelaLogin({ navigation }) {
             </View>
         </View>
     );
-
+}
 const estilos = StyleSheet.create({
     container: {
         flex: 1,

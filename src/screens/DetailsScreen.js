@@ -9,14 +9,14 @@ export default function DetailsScreen({ navigation }) {
             <View style={styles.card}>
                 <Text style={styles.title}>Detalhes</Text>
                 
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.button}
                     onPress={() => navigation.navigate('Home')}
                 >
                     <Text style={styles.buttonText}>Voltar para Início</Text>
                 </TouchableOpacity>
                 
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={[styles.button, styles.profileButton]}
                     onPress={() => navigation.navigate('Profile')}
                 >

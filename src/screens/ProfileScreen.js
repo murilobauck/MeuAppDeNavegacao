@@ -9,14 +9,14 @@ export default function ProfileScreen({ navigation }) {
             <View style={styles.card}>
                 <Text style={styles.title}>Meu Perfil</Text>
                 
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.button}
                     onPress={() => navigation.navigate('Home')}
                 >
                     <Text style={styles.buttonText}>Voltar para Início</Text>
                 </TouchableOpacity>
                 
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={[styles.button, styles.detailsButton]}
                     onPress={() => navigation.navigate('Details')}
                 >
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     detailsButton: {
-        backgroundColor: '#3b82f6', // Azul mais claro para variação
+        backgroundColor: '#3b82f6',
     },
     buttonText: {
         color: '#fff',

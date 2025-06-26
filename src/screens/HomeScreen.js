@@ -45,7 +45,7 @@ export default function HomeScreen({ navigation }) {
             <View style={styles.card}>
                 <Text style={styles.title}>Bem-vindo</Text>
                 
-                <TouchableOpacity 
+                <TouchableOpacity
                     style={styles.button}
                     onPress={() => navigation.navigate('Details')}
                 >
@@ -57,6 +57,13 @@ export default function HomeScreen({ navigation }) {
                     onPress={() => navigation.navigate('Profile')}
                 >
                     <Text style={styles.buttonText}>Meu Perfil</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.buttonExit}
+                    onPress={handleLogout}
+                >
+                    <Text style={styles.buttonText}>Sair</Text>
                 </TouchableOpacity>
             </View>
         </View>
@@ -88,6 +95,15 @@ const styles = StyleSheet.create({
         width: windowWidth * 0.6,
         height: 50,
         backgroundColor: '#1e3a8a',
+        borderRadius: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginVertical: 10,
+    },
+    buttonExit: {
+        width: windowWidth * 0.6,
+        height: 50,
+        backgroundColor: '#ee4444',
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
