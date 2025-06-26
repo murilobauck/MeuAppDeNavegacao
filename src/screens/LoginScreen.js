@@ -1,26 +1,43 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity } from 'react-native';
-import { loginVerification, saveLogin } from '../LoginVerify';
+import React, { useState } from 'react';
+import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { saveLogin } from '../utils/AuthService';
 
 const windowWidth = Dimensions.get('window').width;
 
+const validateCredentials = [
+  { usuario: 'user1', senha: 'senha1' },
+  { usuario: 'user2', senha: 'senha2' },
+  { usuario: 'user3', senha: 'senha3' },
+];
+
 export default function TelaLogin({ navigation }) {
-    const [login, setlogin] = useState("");
+    const [usuario, setUsuario] = useState("");
     const [senha, setSenha] = useState("");
 
-    useEffect(() => {
-      verificarLogin(navigation);
-    }, []);
-
-    const verificarLogin = () => {
-      if (login === "admin" && senha === "123") {
-      saveLogin(login, senha);
-      navigation.navigate('Home');
-      } else {
-        alert("Usuário ou senha incorretos");
+    const handleLogin = async () => {
+      if (usuario.lenghth === 0 || senha.length === 0) {
+          Alert.alert('Erro', 'Por favor, preencha todos os campos.');
+          return;
       }
+
+      const isValidCredential = validateCredentials.some(
+        (usuario) => usuario.usuario === usuario && usuario.senha === senha
+      );
+
+      if (isValidCredential) {
+          const success = await saveLogin(usuario, senha);
+        if (success) {
+          Alert.alert('Sucesso', 'Login realizado!');
+          navigation.replace('Home');
+        } else {
+          Alert.alert('Erro', 'Não foi possível salvar o login localmente.');
+          }
+      } else {
+        Alert.alert('Erro de Login', 'Usuário ou senha inválidos.');
+        }
     }
-    
+}
+
     return (
         <View style={estilos.container}>
             <View style={estilos.areaLogin}>
@@ -30,8 +47,8 @@ export default function TelaLogin({ navigation }) {
                     style={estilos.input}
                     placeholder="Nome de usuário"
                     placeholderTextColor="#999"
-                    value={login}
-                    onChangeText={setlogin}
+                    value={usuario}
+                    onChangeText={setUsuario}
                 />
                 
                 <TextInput
@@ -45,14 +62,13 @@ export default function TelaLogin({ navigation }) {
                 
                 <TouchableOpacity
                     style={estilos.botao}
-                    onPress={() => verificarLogin() && navigation.navigate('Home')}
+                    onPress={handleLogin}
                 >
                     <Text style={estilos.textoBotao}>Entrar</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
-}
 
 const estilos = StyleSheet.create({
     container: {

@@ -1,9 +1,45 @@
-import React from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Alert } from 'react-native';
+import { loadLogin, clearLogin } from '../utils/AuthService';
 
 const windowWidth = Dimensions.get('window').width;
 
 export default function HomeScreen({ navigation }) {
+  const [userInfo, setUserInfo] = useState(null);
+
+  useEffect(() => {
+    const fetchUserInfo = async () => {
+      const data = await loadLogin();
+      setUserInfo(data);
+    };
+    fetchUserInfo();
+  }, []);
+
+  const handleLogout = async () => {
+    Alert.alert(
+      "Sair",
+      "Tem certeza que deseja sair?",
+      [
+        {
+          text: "Cancelar",
+          style: "cancel"
+        },
+        {
+          text: "Sair",
+          onPress: async () => {
+            const success = await clearLogin();
+            if (success) {
+              Alert.alert('Logout', 'Você foi desconectado.');
+              navigation.replace('Login');
+            } else {
+              Alert.alert('Erro', 'Não foi possível fazer logout.');
+            }
+          }
+        }
+      ]
+    );
+  };
+
     return (
         <View style={styles.container}>
             <View style={styles.card}>
