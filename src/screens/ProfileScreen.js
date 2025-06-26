@@ -11,7 +11,7 @@ export default function ProfileScreen({ navigation }) {
 
         <TouchableOpacity
           style={globalStyles.button}
-          onPress={() => navigation.navigate('Home')}
+          onPress={() => navigation.replace('Home')}
         >
           <Text style={globalStyles.buttonText}>Voltar para Início</Text>
         </TouchableOpacity>
