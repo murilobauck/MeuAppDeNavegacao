@@ -19,43 +19,6 @@ Um aplicativo móvel desenvolvido em React Native com Expo que oferece um sistem
 
 ---
 
-## 🏗️ Como Executar o Projeto
-
-### Pré-requisitos
-- Node.js (versão 14 ou superior)
-- npm ou yarn
-- Expo CLI
-- Android Studio (para Android) ou Xcode (para iOS)
-
-### Instalação
-```bash
-# Clone o repositório
-git clone https://github.com/murilobauck/MeuAppDeNavegacao.git
-
-# Acesse a pasta do projeto
-cd MeuAppDeNavegacao
-
-# Instale as dependências
-npm install
-```
-
-### Execução
-```bash
-# Inicie o servidor de desenvolvimento
-npm start
-
-# Para Android
-npm run android
-
-# Para iOS
-npm run ios
-
-# Para Web
-npm run web
-```
-
----
-
 ## 🛠️ Estrutura do Código
 
 O projeto está organizado da seguinte forma:
@@ -166,24 +129,6 @@ src/
 
 ---
 
-## 🔧 Configuração do Ambiente
-
-### Instalação do Expo CLI
-```bash
-npm install -g @expo/cli
-```
-
-### Configuração do Android Studio
-1. Instale o Android Studio
-2. Configure as variáveis de ambiente
-3. Instale um emulador Android
-
-### Configuração do Xcode (macOS)
-1. Instale o Xcode
-2. Configure os simuladores iOS
-
----
-
 ## 🔐 Sistema de Autenticação
 
 ### Credenciais de Acesso
@@ -237,16 +182,3 @@ Se você encontrar algum problema ou tiver dúvidas, por favor:
 - Entre em contato através do [LinkedIn](https://www.linkedin.com/in/murilobauck/)
 
 ---
-
-## 🔄 Changelog
-
-### Versão 1.0.0
-- ✅ Sistema de navegação completo
-- ✅ Autenticação com múltiplas credenciais
-- ✅ Sistema de estilos centralizado
-- ✅ Persistência de dados com AsyncStorage
-- ✅ Validação de formulários
-- ✅ Interface responsiva e moderna
-- ✅ Navegação cruzada entre telas
-- ✅ Confirmação de logout
-- ✅ Verificação automática de login 
