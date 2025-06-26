@@ -42,6 +42,12 @@ export default function HomeScreen({ navigation }) {
       <View style={globalStyles.card}>
         <Text style={globalStyles.title}>Bem-vindo</Text>
         
+        {userInfo && (
+          <Text style={globalStyles.userText}>
+            Logado como: <Text style={globalStyles.userName}>{userInfo.usuario}</Text>
+          </Text>
+        )}
+        
         <TouchableOpacity
           style={globalStyles.button}
           onPress={() => navigation.navigate('Details')}

@@ -50,4 +50,14 @@ export const globalStyles = StyleSheet.create({
     fontSize: fonts.size.input,
     color: colors.textSecondary,
   },
+  userText: {
+    fontSize: 16,
+    color: colors.textSecondary,
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  userName: {
+    color: colors.primary,
+    fontWeight: 'bold',
+  },
 });
