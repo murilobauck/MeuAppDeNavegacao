@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Dimensions, TextInput, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableOpacity, Alert, Dimensions } from 'react-native';
 import { saveLogin } from '../utils/AuthService';
-
-const windowWidth = Dimensions.get('window').width;
+import { globalStyles } from '../styles/global';
+import { colors, spacing } from '../styles/theme';
 
 const validateCredentials = [
   { usuario: 'user1', senha: 'senha1' },
@@ -10,12 +10,14 @@ const validateCredentials = [
   { usuario: 'user3', senha: 'senha3' },
 ];
 
-export default function TelaLogin({ navigation }) {
+const windowWidth = Dimensions.get('window').width;
+
+export default function LoginScreen({ navigation }) {
     const [usuario, setUsuario] = useState("");
     const [senha, setSenha] = useState("");
 
     const handleLogin = async () => {
-      if (usuario.lenghth === 0 || senha.length === 0) {
+      if (usuario.length === 0 || senha.length === 0) {
           Alert.alert('Erro', 'Por favor, preencha todos os campos.');
           return;
       }
@@ -31,86 +33,55 @@ export default function TelaLogin({ navigation }) {
           navigation.replace('Home');
         } else {
           Alert.alert('Erro', 'Não foi possível salvar o login localmente.');
-          }
+        }
       } else {
         Alert.alert('Erro de Login', 'Usuário ou senha inválidos.');
-        }
+      }
     }
 
     return (
-        <View style={estilos.container}>
-            <View style={estilos.areaLogin}>
-                <Text style={estilos.titulo}>Login</Text>
+        <View style={globalStyles.screenContainer}>
+            <View style={styles.loginArea}>
+                <Text style={[globalStyles.title, styles.title]}>Login</Text>
                 
                 <TextInput
-                    style={estilos.input}
+                    style={globalStyles.input}
                     placeholder="Nome de usuário"
-                    placeholderTextColor="#999"
+                    placeholderTextColor={colors.placeholder}
                     value={usuario}
                     onChangeText={setUsuario}
                 />
                 
                 <TextInput
-                    style={estilos.input}
+                    style={globalStyles.input}
                     placeholder="Senha"
-                    placeholderTextColor="#999"
+                    placeholderTextColor={colors.placeholder}
                     secureTextEntry
                     value={senha}
                     onChangeText={setSenha}
                 />
                 
                 <TouchableOpacity
-                    style={estilos.botao}
+                    style={globalStyles.button}
                     onPress={handleLogin}
                 >
-                    <Text style={estilos.textoBotao}>Entrar</Text>
+                    <Text style={globalStyles.buttonText}>Entrar</Text>
                 </TouchableOpacity>
             </View>
         </View>
     );
 }
-const estilos = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#f5f5f5',
-    },
-    areaLogin: {
-        width: windowWidth * 0.8,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        padding: 20,
-        elevation: 3,
-    },
-    titulo: {
-        fontSize: 24,
-        color: '#1e3a8a',
-        marginBottom: 20,
-        textAlign: 'center',
-        fontWeight: 'bold',
-    },
-    input: {
-        height: 50,
-        borderWidth: 1,
-        borderColor: '#ddd',
-        borderRadius: 5,
-        paddingHorizontal: 15,
-        marginBottom: 15,
-        fontSize: 16,
-        backgroundColor: '#f9f9f9',
-    },
-    botao: {
-        height: 50,
-        backgroundColor: '#1e3a8a',
-        borderRadius: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 10,
-    },
-    textoBotao: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
+
+const styles = StyleSheet.create({
+  loginArea: {
+    width: windowWidth * 0.85,
+    backgroundColor: colors.surface,
+    borderRadius: 10,
+    padding: spacing.large,
+    elevation: 3,
+  },
+  title: {
+    textAlign: 'center',
+    marginBottom: spacing.xlarge,
+  },
 });

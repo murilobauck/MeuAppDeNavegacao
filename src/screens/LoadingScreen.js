@@ -1,8 +1,9 @@
-// src/screens/LoadingScreen.js
 import React, { useEffect } from 'react';
 import { ActivityIndicator, StyleSheet, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { checkLoginStatus } from '../utils/AuthService';
+import { globalStyles } from '../styles/global';
+import { colors, fonts, spacing } from '../styles/theme';
 
 export default function LoadingScreen() {
   const navigation = useNavigation();
@@ -11,35 +12,25 @@ export default function LoadingScreen() {
     const checkAuth = async () => {
       const isLoggedIn = await checkLoginStatus();
       setTimeout(() => {
-        if (isLoggedIn) {
-          navigation.replace('Home');
-        } else {
-          navigation.replace('Login');
-        }
+        navigation.replace(isLoggedIn ? 'Home' : 'Login');
       }, 1000);
     };
 
     checkAuth();
-  }, []);
+  }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      <ActivityIndicator size="large" color="#007bff" />
+    <View style={globalStyles.screenContainer}>
+      <ActivityIndicator size="large" color={colors.primary} />
       <Text style={styles.text}>Carregando...</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-  },
   text: {
-    marginTop: 10,
-    fontSize: 18,
-    color: '#333',
+    marginTop: spacing.medium,
+    fontSize: fonts.size.large,
+    color: colors.textSecondary,
   },
 });
